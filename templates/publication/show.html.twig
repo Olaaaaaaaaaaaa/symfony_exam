@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublicationController!
+{% endblock %}
+
+{% block body %}
+	<h1>{{ publication.title }}</h1>
+
+	<p>Créer le
+		{{ publication.createdAt|date('d/m/Y') }}
+		à
+		{{ publication.createdAt|date('H:i:s') }}</p>
+
+	<p>{{ publication.content }}</p>
+
+	{% set i = 1 %}
+	{% for comment in publication.comments %}
+		{% set i = i + 1 %}
+	{% endfor %}
+	<h5>Nombre de commentaires :
+		{{ i }}
+	</h5>
+
+	<h1>Ajouter un commentaire</h1>
+
+	{{ form_start(form) }}
+	{{ form_row(form.content) }}
+	<button type="submit">Valider</button>
+	{{ form_end(form) }}
+
+	<h5>Listes des commentaires :
+	</h5>
+	{% for comment in publication.comments %}
+		<ul>
+			<li>{{ comment.content }}</li>
+		</ul>
+	{% endfor %}
+
+
+{% endblock %}

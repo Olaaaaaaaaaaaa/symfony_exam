@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublicationController!
+{% endblock %}
+
+{% block body %}
+
+	<h1>Liste des publications !</h1>
+
+	<p>Nombre de media :
+		{{ publications.totalItemCount }}
+	</p>
+
+	<ul>
+		{% for publication in publications %}
+			<li>
+				<a href="{{ path('app_publication_show', {'id': publication.id}) }}">{{ publication.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+	<div class="navigation">
+		{{ knp_pagination_render(publications) }}
+	</div>
+
+
+{% endblock %}
